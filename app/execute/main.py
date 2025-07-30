@@ -15,14 +15,12 @@ class Main:
 
         self.logger.info("iniciando execução de validação de dados")
         try:
+            dados_validados = self.validation.validar_dados(event)
 
-            """Exemplo"""
             resultado_consulta_cnpj = self.consulta_cnpj.consultar_dados_cliente(event.get("cnpj", None))
-            """Exemplo"""
+            dados_validados.update(resultado_consulta_cnpj)
 
-            "escreva seu codigo aqui que recebe a resposta do service validar dados se deu tudo certo ou não"
-            "o lambda_handler aguarda a resposta dessa função para saber se os dados foram validados com sucesso ou se ococrreu algum erro por falta de dados por exemplo"
-            "ou falha na consulta de algum dado"
+            return dados_validados
 
         except Exception as error:
             raise error
